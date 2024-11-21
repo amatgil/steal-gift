@@ -1,6 +1,6 @@
 #!/usr/bin/env uiua
 
-┌─╴AoC ~ Fetch
+┌─╴AoCFetch
   # Read session cookie from `.env`
   # Expects the file to exist
   ReadCookie ↚ ▽⊸(≠@\u{22}) ⍣(⌝⊂"session="↘¯1|⍤".env file does not start with `session=`"0) ⍣(&fras ".env"|⍤".env file does not exist"0)
@@ -8,7 +8,7 @@
   # ? Year Day Filename
   # Expects a file called `.env` to exist in the directory
   # containing the session cookie
-  Fetch ← (
+  Call ← (
     ⊙⊙ReadCookie
     $"GET /_/day/_/input HTTP/1.1\r\nHost: adventofcode.com\r\nConnection: close\r\nCookie: session=_\r\n\r\n"
     "adventofcode.com:443"
@@ -17,7 +17,6 @@
     ▽¬⍜⇌\↥ ⊸⦷"\r\n\r\n"                                                               # Remove fluff
     &fwa:
   )
-  Call ← Fetch
 └─╴
 
 AoC 2023 3 "input.txt"
