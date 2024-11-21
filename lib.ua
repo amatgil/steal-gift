@@ -3,20 +3,21 @@
 ┌─╴AoC ~ Fetch
   # Read session cookie from `.env`
   # Expects the file to exist
-  ReadCookie ↚ ▽⊸(≠@\u{22}) antijoin"session="↘¯1 &fras ".env"
-  
+  ReadCookie ↚ ▽⊸(≠@\u{22}) ⍣(⌝⊂"session="↘¯1|⍤".env file does not start with `session=`"0) ⍣(&fras ".env"|⍤".env file does not exist"0)
+
   # ? Year Day Filename
+  # Expects a file called `.env` to exist in the directory
+  # containing the session cookie
   Fetch ← (
     ⊙⊙ReadCookie
     $"GET /_/day/_/input HTTP/1.1\r\nHost: adventofcode.com\r\nConnection: close\r\nCookie: session=_\r\n\r\n"
     "adventofcode.com:443"
-  
-    ⍜&tlsc(&rs∞ ⊸&w:)
-    ⊸⦷"\r\n\r\n"
-    ▽¬⍜⇌\↥
-    &fwa:?
+    ⍜&tlsc(&rs∞ ⊸&w:)                                                                 # Fetch input
+    ⍣⌝⊂(⍤"Server did not return 200, is the session cookie correct?"0) "HTTP/1.1 200" # Make sure it's 200 OK
+    ▽¬⍜⇌\↥ ⊸⦷"\r\n\r\n"                                                               # Remove fluff
+    &fwa:
   )
   Call ← Fetch
 └─╴
 
-+ 1 2
+AoC 2023 3 "input.txt"
