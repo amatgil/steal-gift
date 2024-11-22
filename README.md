@@ -12,7 +12,7 @@ To get it, log into your account at adventofcode.com and use the DevTools to fin
 
 Then, in your code, you may run:
 ```sh
-AoC 2023 2 "input.txt"
+AoCGet 2023 2 "input.txt"
 ```
 
 Which will download day 2, from the year 2023, to 
