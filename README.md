@@ -40,7 +40,7 @@ Then, in your code, you may run:
 ```sh
 Input ← AoCGet 2023 2
 ```
-Which will download day 2, from the year 2023, to `$cachedInputPath/2023-02.txt.
+Which will download day 2, from the year 2023, to `$cachedInputPath/2023-02.txt`.
 
 If you've already got a file with that name, it will be read directly. If not, it will be fetched
 and saved under that name, so subsequent calls shall read from it.
