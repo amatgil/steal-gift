@@ -34,7 +34,7 @@ cachedInputsPath="/tmp/aoc-inputs" # Any path, may be relative
 ```
 
 - `session`: Your Advent of Code (since the input changes per person). To get it, log into your account at adventofcode.com and use the DevTools to find it.
-- `cachedInputPath`:
+- `cachedInputPath`: Where all inputs will be saved. For example, if you choose `"/tmp/aoc-inputs`, it'll slowly get populated by `/tmp/aoc-inputs/2024-01.txt`, `/tmp/aoc-inputs/2024-02.txt`, ...
 
 Then, in your code, you may run:
 ```sh
