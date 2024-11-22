@@ -38,7 +38,7 @@ cachedInputsPath="/tmp/aoc-inputs" # Any path, may be relative
 
 Then, in your code, you may run:
 ```sh
-Input ← AoCGet 2023 2"
+Input ← AoCGet 2023 2
 ```
 Which will download day 2, from the year 2023, to `$cachedInputPath/2023-02.txt.
 
