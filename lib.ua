@@ -1,6 +1,6 @@
 #!/usr/bin/env uiua
 
-┌─╴AoCFetch
+┌─╴AoCGet
   # Read session cookie from `.env`
   # Expects the file to exist
   ReadCookie ↚ ▽⊸(≠@\u{22}) ⍣(⌝⊂"session="↘¯1|⍤".env file does not start with `session=`"0) ⍣(&fras ".env"|⍤".env file does not exist"0)
@@ -22,5 +22,3 @@
       ))
   )
 └─╴
-
-↙100 AoCFetch 2023 3 "input.txt"
