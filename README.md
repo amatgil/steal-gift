@@ -15,7 +15,7 @@ Then, in your code, you may run:
 AoCGet 2023 2 "input.txt"
 ```
 
-Which will download day 2, from the year 2023, to 
+Which will download day 2, from the year 2023, to the file input.txt.
 
 If you've already got a file with that name, it will be read directly. If not, it will be fetched
 and saved under that name, so subsequent calls with read from it.
