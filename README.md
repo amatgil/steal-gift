@@ -1,5 +1,23 @@
 # steal-gift: _steal_ AoC's inputs!
 
+## Quickstart
+To quickly get started with a day, you can copy-paste this template:
+```
+~ "git: github.com/amatgil/steal-gift" ~ AoCGet
+
+# ====== INPUTS ======
+Input ← AoCGet YEAR DAY "input.txt"
+
+# ====== PART 1 ======
+Part₁ ← id
+
+# ====== TESTS =======
+⍤⤙≍ "testsol1" Part₁ "testcase1"
+
+# ======== RUNNING ========
+#$"Part one solution is: '_'" Part₁ Input
+```
+
 ## Usage
 **IMPORTANT**: You must place your session cookie inside a `.env` file, like such:
 ```sh
