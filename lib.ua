@@ -18,7 +18,7 @@
        ⍣⌝⊂(⍤"Server did not return 200, is the session cookie correct?"0) "HTTP/1.1 200" # Make sure it's 200 OK
        ▽¬⍜⇌\↥ ⊸⦷"\r\n\r\n"                                                               # Remove fluff
        ⟜&fwa:
-       &fras
+       ↘¯1 &fras # Drop ending newline
       ))
   )
 └─╴
