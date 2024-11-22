@@ -1,9 +1,13 @@
 #!/usr/bin/env uiua
 
 ┌─╴AoCGet
+  # Read `.env` file and return the corresponding map
+  # Map ?
+  GetMap ↚ map°⊟⍉ ⊜(⍜(°□⊡1|▽⊸≠@\u{22}) ⊜□ ⊸≠@=)⊸≠@\n ⍣(&fras ".env"|⍤".env file does not exist"0)
+
   # Read session cookie from `.env`
   # Expects the file to exist
-  ReadCookie ↚ ▽⊸(≠@\u{22}) ⍣(⌝⊂"session="↘¯1|⍤".env file does not start with `session=`"0) ⍣(&fras ".env"|⍤".env file does not exist"0)
+  ReadCookie ↚ ▽⊸(≠@\u{22}) ⍣(get"session"|⍤".env file does not contain with `session`"0) GetMap
 
   # Input ? Year Day Filename
   # Expects a file called `.env` to exist in the directory
