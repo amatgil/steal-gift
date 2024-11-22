@@ -1,4 +1,4 @@
-# AoCGet
+# steal-gift: _steal_ AoC's inputs!
 
 ## Usage
 **IMPORTANT**: You must place your session cookie inside a `.env` file, like such:
