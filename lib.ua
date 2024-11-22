@@ -43,7 +43,7 @@
        ⍣⌝⊂(⍤"Server did not return 200, is the session cookie correct?"0) "HTTP/1.1 200" # Make sure it's 200 OK
        ▽¬⍜⇌\↥ ⊸⦷"\r\n\r\n"                                                               # Remove http fluff
        ↘¯1                                                                               # And trailing newline
-       ⊙(InputDestPath ⊙(⬚∘↙@0 ¯2 °⋕))                                                   # Save after padding day number
+       ⊙(InputDestPath ⊙(⬚@0↙ ¯2 °⋕))                                                   # Save after padding day number
        ⊸MkdirAndWrite:
       ))
   )
