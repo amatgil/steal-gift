@@ -9,7 +9,7 @@ To quickly get started with a day, you can copy-paste this template:
 Input ← AoCGet YEAR DAY "input.txt"
 
 # ====== PART 1 ======
-Part₁ ← id
+Part₁ ← ∘
 
 # ====== TESTS =======
 ⍤⤙≍ "testsol1" Part₁ "testcase1"
