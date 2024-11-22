@@ -1,4 +1,4 @@
-# steal-gift: _steal_ AoC's inputs!
+# steal-gift: _steal_ your AoC's inputs from Santa!
 
 ## Quickstart
 To quickly get started with a day, you can copy-paste this template:
