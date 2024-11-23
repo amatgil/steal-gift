@@ -14,7 +14,8 @@
   InputDestPath ↚ |2 (
     GetEnvMap
     ⍣(°□get"cachedInputsPath"|⍤".env file does not contain required `cachedInputsPath`"0)
-    ⍣⍜⇌(⌝⊂@/)∘ # Trim trailing backslash (no rsync cosplay here)
+    ⍣⍜⇌(⌝⊂@/)∘     # Trim trailing backslash (no rsync cosplay here)
+    ⊙⊙(⬚@0↙ ¯2 °⋕) # Pad day
     $"_/_-_.txt"
   )
 
@@ -35,16 +36,18 @@
   # containing the session cookie. If Filename does not exist,
   # it will be downloaded; otherwise it is simply read
   Call ← |2 (
-    ⍣(&fras InputDestPath
-    | (⊙⊙ReadCookie
+    ⍣(&p "Found local input, reading from disk" &fras ? InputDestPath
+    | (&p "No local input found, fetching from server" ?
+       ⊙⊙ReadCookie
        ⊃(CreateUrl|⊙⊙◌)
        "adventofcode.com:443"
-       ⍜&tlsc(&rs∞ ⊸&w:)                                                                 # Fetch input
+       ⍜&tlsc(&rs∞ ⊸&w:) # Fetch input
+       # TODO: Display return string if it's not 200 OK
        ⍣⌝⊂(⍤"Server did not return 200, is the session cookie correct?"0) "HTTP/1.1 200" # Make sure it's 200 OK
        ▽¬⍜⇌\↥ ⊸⦷"\r\n\r\n"                                                               # Remove http fluff
        ↘¯1                                                                               # And trailing newline
-       ⊙(InputDestPath ⊙(⬚@0↙ ¯2 °⋕))                                                   # Save after padding day number
-       ⊸MkdirAndWrite:
+       ⊙InputDestPath                                                                    # Save after padding day number
+       ⊸MkdirAndWrite?:
       ))
   )
 └─╴
