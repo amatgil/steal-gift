@@ -24,7 +24,7 @@
   MkdirAndWrite ↚ |2.0 (
     ⊸(≠@/)
     ⊸(▽¬⍜⇌\↧)
-    ⍣(&cd|&fmd)
+    &fmd
     &fwa
   )
 
@@ -42,12 +42,15 @@
        ⊃(CreateUrl|⊙⊙◌)
        "adventofcode.com:443"
        ⍜&tlsc(&rs∞ ⊸&w:) # Fetch input
+       # dump(↙100)
        # TODO: Display return string if it's not 200 OK
        ⍣⌝⊂(⍤"Server did not return 200, is the session cookie correct?"0) "HTTP/1.1 200" # Make sure it's 200 OK
-       ▽¬⍜⇌\↥ ⊸⦷"\r\n\r\n"                                                               # Remove http fluff
+       ▽⍜⇌\↧ ¬⊸⦷"\r\n\r\n"                                                               # Remove http fluff
        ↘¯1                                                                               # And trailing newline
        ⊙InputDestPath                                                                    # Save after padding day number
-       ⊸MkdirAndWrite:
+       ⊸(MkdirAndWrite):
       ))
   )
 └─╴
+
+AoCGet 2023 2
