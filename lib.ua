@@ -36,8 +36,8 @@
   # containing the session cookie. If Filename does not exist,
   # it will be downloaded; otherwise it is simply read
   Call ← |2 (
-    ⍣(&p "Found local input, reading from disk" &fras ? InputDestPath
-    | (&p "No local input found, fetching from server" ?
+    ⍣(&p "Found local input, reading from disk" &fras InputDestPath
+    | (&p "No local input found, fetching from server"
        ⊙⊙ReadCookie
        ⊃(CreateUrl|⊙⊙◌)
        "adventofcode.com:443"
@@ -47,7 +47,7 @@
        ▽¬⍜⇌\↥ ⊸⦷"\r\n\r\n"                                                               # Remove http fluff
        ↘¯1                                                                               # And trailing newline
        ⊙InputDestPath                                                                    # Save after padding day number
-       ⊸MkdirAndWrite?:
+       ⊸MkdirAndWrite:
       ))
   )
 └─╴
