@@ -4,7 +4,7 @@
 To quickly get started with a day, you can copy-paste this template:
 
 - `today.ua`
-```
+```uiua
 ~ "git: github.com/amatgil/steal-gift" ~ AoCGet
 
 # ====== INPUTS ======
@@ -20,7 +20,7 @@ Part₁ ← ∘
 #$"Part one solution is: '_'" Part₁ Input
 ```
 - `.env`
-```
+```sh
 session="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 cachedInputsPath="/tmp/aoc-inputs" # Any path, may be relative
 ```
@@ -34,7 +34,7 @@ cachedInputsPath="/tmp/aoc-inputs" # Any path, may be relative
 ```
 
 - `session`: Your Advent of Code (since the input changes per person). To get it, log into your account at adventofcode.com and use the DevTools to find it.
-- `cachedInputPath`: Where all inputs will be saved. For example, if you choose `"/tmp/aoc-inputs`, it'll slowly get populated by `/tmp/aoc-inputs/2024-01.txt`, `/tmp/aoc-inputs/2024-02.txt`, ...
+- `cachedInputPath`: Where all inputs will be saved. For example, if you choose `/tmp/aoc-inputs`, it'll slowly get populated by `/tmp/aoc-inputs/2024-01.txt`, `/tmp/aoc-inputs/2024-02.txt`, ...
 
 Then, in your code, you may run:
 ```sh
