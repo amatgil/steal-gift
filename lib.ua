@@ -28,6 +28,9 @@
     &fwa
   )
 
+  # Is debug on <=> DEBUG="literally anything"
+  IsDebugOn ↚ ⍣(1◌get"debug"|0)GetEnvMap
+
   # url ? Year Day Cookie
   CreateUrl ↚ |3 $"GET /_/day/_/input HTTP/1.1\r\nHost: adventofcode.com\r\nConnection: close\r\nCookie: session=_\r\n\r\n"
 
@@ -36,8 +39,8 @@
   # containing the session cookie. If Filename does not exist,
   # it will be downloaded; otherwise it is simply read
   Call ← |2 (
-    ⍣(&p "Found local input, reading from disk" &fras InputDestPath
-    | (&p "No local input found, fetching from server"
+    ⍣(⨬(∘|&p "Found local input, reading from disk")IsDebugOn &fras InputDestPath
+    | (⨬(∘|&p "No local input found, fetching from server")IsDebugOn
        ⊙⊙ReadCookie
        ⊃(CreateUrl|⊙⊙◌)
        "adventofcode.com:443"
