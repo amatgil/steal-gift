@@ -23,6 +23,7 @@ Part₁ ← ∘
 ```sh
 session="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 cachedInputsPath="/tmp/aoc-inputs" # Any path, may be relative
+debug="any text here works!" # Enables information
 ```
 
 ## Usage
@@ -31,10 +32,12 @@ cachedInputsPath="/tmp/aoc-inputs" # Any path, may be relative
 # In .env
 session="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 cachedInputsPath="/tmp/aoc-inputs" # Any path, may be relative
+debug="hello hai :3" # Tells you if it the input was obtained from the server or locally
 ```
 
 - `session`: Your Advent of Code (since the input changes per person). To get it, log into your account at adventofcode.com and use the DevTools to find it.
 - `cachedInputPath`: Where all inputs will be saved. For example, if you choose `/tmp/aoc-inputs`, it'll slowly get populated by `/tmp/aoc-inputs/2024-01.txt`, `/tmp/aoc-inputs/2024-02.txt`, ...
+- `debug`: If this variable exists at all, it is taken as "true"; "false" otherwise. If true, it includes prints telling you the source of the input (server or locally).
 
 Then, in your code, you may run:
 ```sh
