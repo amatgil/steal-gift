@@ -4,7 +4,7 @@
 }:
 let
   packages = with pkgs; [
-    uiua
+    uiua-unstable
   ];
 in
 pkgs.mkShell {
