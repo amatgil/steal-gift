@@ -3,7 +3,7 @@
 ┌─╴AoCGet
   # Read `.env` file and return the corresponding map
   # Map ?
-  GetEnvMap ↚ map°⊟⍉ ⊜(⍜(°□⊡1|▽⊸≠@\u{22}) ⊜□ ⊸≠@=)⊸≠@\n ⍣(&fras ".env"|⍤".env file does not exist"0)
+  GetEnvMap ↚ map°⊟⍉ ⊜(⍜(°□⊡1|▽⊸≠@\u{22}) ⊜□ ⊸≠@=)⊸≠@\n ⍣(&fras ".env"|&fras "../.env"|⍤".env (or ../.env) file does not exist"0)
 
   # Read session cookie from `.env`
   # Expects the file to exist
