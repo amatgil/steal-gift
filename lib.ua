@@ -62,8 +62,8 @@
   AssertDateIsValid ↚ |2.0 ⊃(AssertDateHasArrived|AssertDateAfterEpoch)
 
   # ? HttpResponse
-  # Checks that the response is 200
-  VerifyHttp₂₀₀ ← ⍣⌝⊂(⍤"Server did not return 200, are the session cookie and Year/Day correct?"0) "HTTP/1.1 200"
+  # Checks that the response is 200 and drops that part of the response
+  CleanInput ← ⍣⌝⊂(⍤"Server did not return 200, are the session cookie and Year/Day correct?"0) "HTTP/1.1 200"
 
   # Input ? Year Day
   FetchInput ← (
@@ -78,10 +78,10 @@
     ⍣(⍥(&p"Found local input, reading from disk")IsDebugOn &fras InputDestPath
     | (⍥(&p"No local input found, fetching from server")IsDebugOn
        ◡(|2.0 AssertDateIsValid)
-       ◡(|2 FetchInput)
-       (|1 VerifyHttp₂₀₀)                    # Make sure it's 200 OK
-       (|1 ↘¯1▽⍜⇌\↧ ¬⊸⦷"\r\n\r\n")           # Drop http fluff
-       (|3 ˜⊸(MkdirAndWrite) ⊙InputDestPath) # Save after padding day number
+       ◡(|2 FetchInput)                   # Input Year Day <- Year Day
+       (|1 CleanInput)                    # Errors if not 200
+       (|1 ↘¯1▽⍜⇌\↧ ¬⊸⦷"\r\n\r\n")        # Drop http fluff
+       (|3 ⟜˜MkdirAndWrite⊙InputDestPath) # Save after padding day number
       ))
   )
 └─╴
