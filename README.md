@@ -24,7 +24,7 @@ Part₁ ← ∘
 session="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 cachedInputsPath="/tmp/aoc-inputs" # Any path, may be relative
 debug="any text here works!" # Enables information
-contact="youremail@here.com" # As requested by Eric, who runs AoC
+contact="your_email@here.com" # As requested by Eric, who runs AoC
 ```
 
 ## Usage
