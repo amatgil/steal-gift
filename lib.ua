@@ -82,7 +82,6 @@
   # Input ? Year Day
   # Expects a file called `.env` to exist in the directory containing the session
   # cookie. If Filename does not exist, it will be downloaded; otherwise it is simply read
-  # Track caller!
   Call ← |2 (
     ◡(|2.0 ⊓(˜AssertPositiveInteger"Year"|˜AssertPositiveInteger"Day"))
     ⍣(⍥(&p"Found local input, reading from disk")IsDebugOn &fras InputDestPath
