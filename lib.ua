@@ -12,8 +12,8 @@
     ParseKey ← Trim
     ParseValue ← (
       Trim
-      ↘1⍤"Must start with a double quote" ≍Quote⊸⊡₀
-      ↘¯1⍤"Must end with a double quote" ≍Quote⊸⊡₋₁
+      ↘1⍤"Must start with a double quote" ≍Quote⊸⊢
+      ↘¯1⍤"Must end with a double quote" ≍Quote⊸⊣
     )
 
     ⊜□⊸≠@=
