@@ -1,14 +1,37 @@
 #!/usr/bin/env uiua
 
 ┌─╴AoCGet
+  # The literal quote character, typing it literally makes my lsp freak out
+  Quote ↚ @\u{22}
+
+  # [key value] ? Key="Value"
+  # Takes a single string of the form `Key="Value"` and splits into a key
+  # and value (with included error checking)
+  ParseKeyValue ← (
+    Trim ← ▽¬ ↧1+⊃(⍜⇌\×|\×)⊸=@\s
+    ParseKey ← Trim
+    ParseValue ← (
+      Trim
+      ⍤"Must start with a double quote" ≍Quote⊸⊡₀
+      ⍤"Must end with a double quote" ≍Quote⊸⊡₋₁
+    )
+
+    ⊜□⊸≠@=
+    ⍣(⍜(°□⊡0)ParseKey|˜⍤0$"Invalid/missing key in .env file: '_' (_)")
+    ⍣(⍜(°□⊡1)ParseValue|˜⍤0$"Invalid/missing value in .env file: '_' (_)")
+  )
+
   # Read `.env` file and return the corresponding map
   # Map ?
-  GetEnvMap ↚ memo(map°⊟⍉ ⊜(⍜(°□⊡1|▽⊸≠@\u{22}) ⊜□⊸≠@=)⊸≠@\n ⍣(&fras ".env"|&fras "../.env"|⍤".env (or ../.env) file does not exist"0))
+  GetEnvMap ↚ memo(
+    ⍣(&fras ".env"|&fras "../.env"|⍤".env (or ../.env) file does not exist"0)
+    map°⊟⍉ ⊜ParseKeyValue ⊸≠@\n
+  )
 
   # Read session cookie from `.env`
   # Expects the file to exist
   # Cookie ?
-  ReadCookie ↚ |0 ?▽⊸(≠@\u{22}) ⍣(°□get"session"|⍤".env file does not contain required `session`"⋅0) GetEnvMap
+  ReadCookie ↚ |0 ⍣(°□get"session"|⍤".env file does not contain required `session`"⋅0) GetEnvMap
 
   # Read the `$contact` information from `.env`
   # Aoc guidelines ask that, if one is using an automated method to obtain
@@ -16,7 +39,7 @@
   # they'll get immediately IP-Banned)
   #
   # Errors if it doesn't exist
-  ReadContactInfo ↚ ▽⊸(≠@\u{22}) ⍣(°□get"contact"|⍤".env file does not contain non-required `contact`"⋅0) GetEnvMap
+  ReadContactInfo ↚ ⍣(°□get"contact"|⍤".env file does not contain non-required `contact`"⋅0) GetEnvMap
 
   # Path ? Year Day
   # Reads from .env to find full path
@@ -73,7 +96,10 @@
 
   # ? HttpResponse
   # Checks that the response is 200 and drops that part of the response
-  CleanInput ← ⍣⌝⊂(˜⍤0"Server did not return 200, are the session cookie and Year/Day correct?") "HTTP/1.1 200"
+  CleanInput ← (
+    "HTTP/1.1 200"
+    ⍣⌝⊂(˜⍤0 $"Server did not return 200, are the session cookie and Year/Day correct? (Returned: _)" /◇⊂₃@\s↙₂⊜□ ⊸≠@\s◌)
+  )
 
   # Input ? Year Day
   FetchInput ← (
