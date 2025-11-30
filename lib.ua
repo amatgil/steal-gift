@@ -63,7 +63,7 @@
 
   # ? HttpResponse
   # Checks that the response is 200 and drops that part of the response
-  CleanInput ← ⍣⌝⊂(⍤"Server did not return 200, are the session cookie and Year/Day correct?"0) "HTTP/1.1 200"
+  CleanInput ← ⍣⌝⊂(˜⍤0"Server did not return 200, are the session cookie and Year/Day correct?") "HTTP/1.1 200"
 
   # Input ? Year Day
   FetchInput ← (
@@ -71,10 +71,16 @@
     (|1 ⍜&tlsc˜(&rs∞ ⊸&w) "adventofcode.com:443")  # Actual fetching
   )
 
+  # ? x ValueName
+  # Errors if x is not a positive integer greater than 0.
+  AssertPositiveInteger ← |2.0 ˜⍤ ⊃(×⊃(≥1|≍⊸⌊)|˜$"Given _ (_) is not a positive integer")
+
   # Input ? Year Day
   # Expects a file called `.env` to exist in the directory containing the session
   # cookie. If Filename does not exist, it will be downloaded; otherwise it is simply read
+  # Track caller!
   Call ← |2 (
+    ◡(|2.0 ⊓(˜AssertPositiveInteger"Year"|˜AssertPositiveInteger"Day"))
     ⍣(⍥(&p"Found local input, reading from disk")IsDebugOn &fras InputDestPath
     | (⍥(&p"No local input found, fetching from server")IsDebugOn
        ◡(|2.0 AssertDateIsValid)
