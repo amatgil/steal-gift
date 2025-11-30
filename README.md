@@ -38,7 +38,7 @@ contact="youremail@here.com" # As requested by Eric, who runs AoC
 ```
 
 - `session`: Your Advent of Code (since the input changes per person). To get it, log into your account at adventofcode.com and use the DevTools to find it.
-- `cachedInputPath`: Where all inputs will be saved. For example, if you choose `/tmp/aoc-inputs`, it'll slowly get populated by `/tmp/aoc-inputs/2024-01.txt`, `/tmp/aoc-inputs/2024-02.txt`, ...
+- `cachedInputsPath`: Where all inputs will be saved. For example, if you choose `/tmp/aoc-inputs`, it'll slowly get populated by `/tmp/aoc-inputs/2024-01.txt`, `/tmp/aoc-inputs/2024-02.txt`, ...
 - `debug`: If this variable exists at all, it is taken as "true"; "false" otherwise. If true, it includes prints telling you the source of the input (server or locally).
 - `contact`: Some method to contact you, the user of the library. Eric has requested this, to be able to contact a user in case something goes wrong.
 
