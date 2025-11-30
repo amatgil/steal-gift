@@ -75,7 +75,7 @@
   # Errors if x is not a positive integer greater than 0.
   AssertPositiveInteger ← |2.0 (
     ⟜˜$"Given _ (value '_') is not a positive integer"
-    ◡(˜⍤ ≍2type)
+    ◡(˜⍤ ≍0type)
     ˜⍤ ×⊃(≥1|≍⊸⌊)
   )
 
