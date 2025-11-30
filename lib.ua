@@ -73,7 +73,11 @@
 
   # ? x ValueName
   # Errors if x is not a positive integer greater than 0.
-  AssertPositiveInteger ← |2.0 ˜⍤ ⊃(×⊃(≥1|≍⊸⌊)|˜$"Given _ (_) is not a positive integer")
+  AssertPositiveInteger ← |2.0 (
+    ⟜˜$"Given _ (value '_') is not a positive integer"
+    ◡(˜⍤ ≍2type)
+    ˜⍤ ×⊃(≥1|≍⊸⌊)
+  )
 
   # Input ? Year Day
   # Expects a file called `.env` to exist in the directory containing the session
