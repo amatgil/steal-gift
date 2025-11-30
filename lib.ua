@@ -3,11 +3,20 @@
 ┌─╴AoCGet
   # Read `.env` file and return the corresponding map
   # Map ?
-  GetEnvMap ↚ map°⊟⍉ ⊜(⍜(°□⊡1|▽⊸≠@\u{22}) ⊜□ ⊸≠@=)⊸≠@\n ⍣(&fras ".env"|&fras "../.env"|⍤".env (or ../.env) file does not exist"0)
+  GetEnvMap ↚ memo(map°⊟⍉ ⊜(⍜(°□⊡1|▽⊸≠@\u{22}) ⊜□ ⊸≠@=)⊸≠@\n ⍣(&fras ".env"|&fras "../.env"|⍤".env (or ../.env) file does not exist"0))
 
   # Read session cookie from `.env`
   # Expects the file to exist
-  ReadCookie ↚ ▽⊸(≠@\u{22}) ⍣(°□get"session"|⍤".env file does not contain required `session`"0) GetEnvMap
+  # Cookie ?
+  ReadCookie ↚ |0 ▽⊸(≠@\u{22}) ⍣(°□get"session"|⍤".env file does not contain required `session`"0) GetEnvMap
+
+  # Read the `$contact` information from `.env`
+  # Aoc guidelines ask that, if one is using an automated method to obtain
+  # input, that the User-Agent contain a way to contact the user (otherwise,
+  # they'll get immediately IP-Banned)
+  #
+  # Errors if it doesn't exist
+  ReadContactInfo ↚ ▽⊸(≠@\u{22}) ⍣(°□get"contact"|⍤".env file does not contain non-required `contact`"0) GetEnvMap
 
   # Path ? Year Day
   # Reads from .env to find full path
@@ -31,24 +40,48 @@
   # Is debug on <=> DEBUG="literally anything"
   IsDebugOn ↚ ⍣(1◌get"debug"|0)GetEnvMap
 
-  # url ? Year Day Cookie
-  CreateUrl ↚ |3 $"GET /_/day/_/input HTTP/1.1\r\nHost: adventofcode.com\r\nConnection: close\r\nCookie: session=_\r\n\r\n"
+  # url ? Year Day Cookie UserAgent
+  CreateUrl ↚ |4 $"GET /_/day/_/input HTTP/1.1\r\nHost: adventofcode.com\r\nConnection: close\r\nCookie: session=_\r\nUser-Agent: _\r\n\r\n"
 
-  # has ? Year Month
-  HasDateArrived ← |2 ≍⊸⍜∩□(⊢⍆⊟) ↙₃datetimenow ⊟₃⊙11
+  # has ? Year Day
+  HasDateArrived ↚ |2 ¬≍⊸⍆{⊙∘} ↙₃datetimenow ⊟₃⊙12
+
+  # has ? Year Day
+  HasDateAfterEpoch ↚ |2 ≍⊸⍆{⊙∘} [2015 12 1] ⊟₃⊙12
+
+  # ? Year Day
+  # Errors if the date has not arrived
+  AssertDateHasArrived ↚ |2.0 ˜⍤⊙$"The year/day \"_/_\" still hasn't arrived!" ◡HasDateArrived
+
+  # ? Year Day
+  # Errors if the date is before 2015/12/1
+  AssertDateAfterEpoch ↚ |2.0 ˜⍤⊙$"The year/day \"_/_\" means before the very first aoc problem! !" ◡HasDateAfterEpoch
+
+  # ? Year Day
+  # Errors if date is invalid
+  AssertDateIsValid ↚ |2.0 ⊃(AssertDateHasArrived|AssertDateAfterEpoch)
+
+  # ? HttpResponse
+  # Checks that the response is 200
+  VerifyHttp₂₀₀ ← ⍣⌝⊂(⍤"Server did not return 200, are the session cookie and Year/Day correct?"0) "HTTP/1.1 200"
 
   # Input ? Year Day
-  # Expects a file called `.env` to exist in the directory containing the session cookie. If Filename does not exist, it will be downloaded; otherwise it is simply read
+  FetchInput ← (
+    (|2 CreateUrl ⊙⊙⊃(ReadCookie|ReadContactInfo)) # Get the url
+    (|1 ⍜&tlsc˜(&rs∞ ⊸&w) "adventofcode.com:443")  # Actual fetching
+  )
+
+  # Input ? Year Day
+  # Expects a file called `.env` to exist in the directory containing the session
+  # cookie. If Filename does not exist, it will be downloaded; otherwise it is simply read
   Call ← |2 (
-    ⍣(⍥(&p "Found local input, reading from disk")IsDebugOn &fras InputDestPath
-    | (⍥(&p "No local input found, fetching from server")IsDebugOn
-       ◡(|2.0 ˜⍤⊙$"The year/day \"_/_\" still hasn't arrived!" ◡HasDateArrived)          # Check validness of date
-       "adventofcode.com:443" ⊃(CreateUrl|⊙⊙◌) ⊙⊙ReadCookie                              # Prep
-       ⍜&tlsc(&rs∞ ⊸&w:)                                                                 # Fetch input
-       ⍣⌝⊂(⍤"Server did not return 200, is the session cookie correct?"0) "HTTP/1.1 200" # Make sure it's 200 OK
-       ↘¯1▽⍜⇌\↧ ¬⊸⦷"\r\n\r\n"                                                            # Remove http fluff
-       ⊙InputDestPath                                                                    # Save after padding day number
-       ˜⊸(MkdirAndWrite)
+    ⍣(⍥(&p"Found local input, reading from disk")IsDebugOn &fras InputDestPath
+    | (⍥(&p"No local input found, fetching from server")IsDebugOn
+       ◡(|2.0 AssertDateIsValid)
+       ◡(|2 FetchInput)
+       (|1 VerifyHttp₂₀₀)                    # Make sure it's 200 OK
+       (|1 ↘¯1▽⍜⇌\↧ ¬⊸⦷"\r\n\r\n")           # Drop http fluff
+       (|3 ˜⊸(MkdirAndWrite) ⊙InputDestPath) # Save after padding day number
       ))
   )
 └─╴
