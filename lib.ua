@@ -42,7 +42,7 @@
   # they'll get immediately IP-Banned)
   #
   # Errors if it doesn't exist
-  ReadContactInfo ↚ ⍣(°□get"contact"|⍤".env file does not contain non-required `contact`"⋅0) GetEnvMap
+  ReadContactInfo ↚ ⍣(°□get"contact"|⍤".env file does not contain required `contact`"⋅0) GetEnvMap
 
   # Path ? Year Day
   # Reads from .env to find full path
