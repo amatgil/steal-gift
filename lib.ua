@@ -8,7 +8,10 @@
   # Takes a single string of the form `Key="Value"` and splits into a key
   # and value (with included error checking)
   ParseKeyValue ← (
-    Trim ← ▽¬ ↧1+⊃(⍜⇌\×|\×)⊸=@\s
+    Trim ← (
+      ⍥↘₋₁⊸(=@\r⊣) # For windows encoding. This always messes with me raaa
+      ▽¬ ↧1+⊃(⍜⇌\×|\×)⊸=@\s
+    )
     ParseKey ← Trim
     ParseValue ← (
       Trim
