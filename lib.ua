@@ -34,7 +34,10 @@
   # Read session cookie from `.env`
   # Expects the file to exist
   # Cookie ?
-  ReadCookie ↚ |0 ⍣(°□get"session"|⍤".env file does not contain required `session`"⋅0) GetEnvMap
+  ReadCookie ↚ |0 (
+    ⍣(°□get"session"|⍤".env file does not contain required `session`"⋅0) GetEnvMap
+    ⍤"Session cookie cannot be empty string" ⊸(±⧻)
+  )
 
   # Read the `$contact` information from `.env`
   # Aoc guidelines ask that, if one is using an automated method to obtain
@@ -44,7 +47,7 @@
   # Errors if it doesn't exist
   ReadContactInfo ↚ |0 (
     ⍣(°□get"contact"|⍤".env file does not contain required `contact`"⋅0) GetEnvMap
-    ⍤"Contact information cannot be empty"⊸(±⧻)
+    ⍤"Contact information cannot be empty string" ⊸(±⧻)
   )
 
   # Path ? Year Day
