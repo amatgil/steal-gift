@@ -80,8 +80,8 @@
   # They must both be [Year Month Day]
   IsBefore ↚ ≍⊙◌⊸⍜{⊙∘}⍆
 
-  # This is here for mnemonics
-  CurrDate ↚ ↙₃datetimenow
+  # This is here for mnemonics and timezone shenanigans
+  CurrDate ↚ ↙₃datetime (-×5 3600) now
 
   # has ? Year Day
   # Equivalent to the question: Is the requested date before the current date?
