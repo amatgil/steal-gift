@@ -22,9 +22,9 @@ Part₁ ← ∘
 - `.env`
 ```sh
 session="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-cachedInputsPath="/tmp/aoc-inputs" # Any path, may be relative
-debug="any text here works!" # Enables information
-contact="your_email@here.com" # As requested by Eric, who runs AoC
+cachedInputsPath="/tmp/aoc-inputs"
+debug="any text here works!"
+contact="your_email@here.com"
 ```
 
 ## Usage
@@ -32,9 +32,9 @@ contact="your_email@here.com" # As requested by Eric, who runs AoC
 ```sh
 # In .env
 session="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-cachedInputsPath="/tmp/aoc-inputs" # Any path, may be relative
-debug="hello hai :3" # Tells you if it the input was obtained from the server or locally
-contact="youremail@here.com" # As requested by Eric, who runs AoC
+cachedInputsPath="/tmp/aoc-inputs"
+debug="hello hai :3"
+contact="your_email@here.com"
 ```
 
 - `session`: Your Advent of Code (since the input changes per person). To get it, log into your account at adventofcode.com and use the DevTools to find it (example at the end of this README).
