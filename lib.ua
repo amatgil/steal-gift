@@ -106,8 +106,12 @@
   # ? HttpResponse
   # Checks that the response is 200 and drops that part of the response
   CleanInput ← (
+    ErrStr = (
+        fork(unboxfir|pic,`2)⊜□⊸(notmask"\r\n")
+        $"Returned:\n\t- Code: _\n\t- Body: _"
+    )
     "HTTP/1.1 200"
-    ⍣⌝⊂(˜⍤0 $"Server did not return 200, are the session cookie and Year/Day correct? (Returned: _)" /◇⊂₃@\s↙₂⊜□ ⊸≠@\s◌)
+    ⍣⌝⊂(˜⍤0 $"Server did not return 200, are the session cookie and Year/Day correct?\n_" ErrStr ◌?)
   )
 
   # Input ? Year Day
