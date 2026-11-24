@@ -7,17 +7,11 @@ To quickly get started with a day, you can copy-paste this template:
 ```uiua
 ~ "git: github.com/amatgil/steal-gift" ~ AoCGet
 
-# ====== INPUTS ======
-Input ← AoCGet YEAR DAY
+Input ← AoCGet 2015 01
 
-# ====== PART 1 ======
-Part₁ ← ∘
+Part₁ ← ↙₁₀
 
-# ====== TESTS =======
-⍤⤙≍ "testsol1" Part₁ "testcase1"
-
-# ======== RUNNING ========
-#$"Part one solution is: '_'" Part₁ Input
+$"Part one solution is: '_'" Part₁ Input
 ```
 - `.env`
 ```sh
@@ -39,7 +33,7 @@ contact="your_email@here.com"
 
 - `session`: Your Advent of Code (since the input changes per person). To get it, log into your account at adventofcode.com and use the DevTools to find it (example at the end of this README).
 - `cachedInputsPath`: Where all inputs will be saved. For example, if you choose `/tmp/aoc-inputs`, it'll slowly get populated by `/tmp/aoc-inputs/2024-01.txt`, `/tmp/aoc-inputs/2024-02.txt`, ...
-- `debug`: If this variable exists at all, it is taken as "true"; "false" otherwise. If true, it includes prints telling you the source of the input (server or locally).
+- `debug`: If this variable exists at all, it is taken as "true"; "false" otherwise. If true, it includes prints telling you the source of the input (whether it was from the server or from the filesystem).
 - `contact`: Some method to contact you, the user of the library. Eric has requested this, to be able to contact a user in case something goes wrong.
 
 Then, in your code, you may run:
@@ -54,4 +48,15 @@ and saved under that name, so subsequent calls shall read from it.
 
 # Getting your session cookie
 ## On firefox
+
+Steps: F12, Storage, Cookies, the one that says 'session'
+
 ![Image showing how to get cookie: F12, Storage, Cookies, the one that says 'session'](images/session_getting_example_firefox.png)
+
+
+
+## On chromium
+
+Steps: F12, Application, Cookies, the one that says 'session'
+
+![Image showing how to get cookie: F12, Application, Cookies, the one that says 'session'](images/session_getting_example_chromium.png)
