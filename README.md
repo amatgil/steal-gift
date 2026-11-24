@@ -7,8 +7,13 @@ To quickly get started with a day, you can copy-paste this template:
 ```uiua
 ~ "git: github.com/amatgil/steal-gift" ~ AoCGet
 
-Part₁ ← ↙₁₀
-Part₁ AoCGet 2015 01
+Input ← AoCGet 2015 01
+
+Part₁ ← /+-⊸¬=@(
+Part₂ ← +₁ ⊢⊚=¯1 \+-⊸¬=@(
+
+Part₁ Input
+Part₂ Input
 ```
 - `.env`
 ```sh
